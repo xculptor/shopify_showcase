@@ -28,7 +28,7 @@ function useAnimationList(
     ) {
       const actions = scroll.actions;
       const sortedActions = sortArray(actions, "start_scroll_progress");
-      console.log("sortedActions", sortedActions);
+     // console.log("sortedActions", sortedActions);
     
       const currInitialValue = []
       const animationList = [];
@@ -130,7 +130,7 @@ function useAnimationList(
               }
             });
           } else if (sortedActions[i].action_object_type === "CAMERA") {
-            console.log(camera.position.x, camera.position.y, camera.position.z)
+           // console.log(camera.position.x, camera.position.y, camera.position.z)
             animationList.push({
               ...sortedActions[i],
               prev_scroll_progress: 0,

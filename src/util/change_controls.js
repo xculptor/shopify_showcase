@@ -6,31 +6,31 @@ const changeControls = (renderer, currProduct, allRulers, scene, camera, experie
    
     switch (prop) {
         case "autoRotate":
-            console.log('autoRotate', value)
+          //  console.log('autoRotate', value)
             const newVal = value === 'true' ? true : false
             orbitControls.autoRotate = newVal //=== 'true'? true : false
             break;
         case "ruler":
-            console.log('RRRUUUULLLLEEEERRRR')
-            console.log(currProduct)
-            console.log(value)
+           // console.log('RRRUUUULLLLEEEERRRR')
+           // console.log(currProduct)
+          //  console.log(value)
             
                  const xid = allRulers.filter(item => item.object_link_id === currProduct.product.components[0].link_id)[0].link_id
-                 console.log(xid)
+             //    console.log(xid)
                  scene.traverse(function (child) {
-                    console.log(child.userData.xid, xid)
+              //      console.log(child.userData.xid, xid)
                      if(child.userData && child.userData.xid && child.userData.xid === xid) {
-                        console.log('setting :', value)     
+             //           console.log('setting :', value)     
                         const x = child.visible
                         child.visible = !x                   
                  }}) 
             break;
             case "restart":
-                console.log('reStart');
+             //   console.log('reStart');
                 
                 break;
             case "resetCamera":
-                console.log('resetCamera');
+             //   console.log('resetCamera');
                 const cameraPosition = experience.cameras.filter(item => item.is_default)[0].camera_position
                 const cameraTarget = experience.orbit_control.target
                 camera.position.x = cameraPosition.x;
@@ -41,7 +41,7 @@ const changeControls = (renderer, currProduct, allRulers, scene, camera, experie
                 orbitControls.target.z = cameraTarget.z;
                 break;
             case "takeSnapshot":
-                console.log("takeSnapshot");
+              //  console.log("takeSnapshot");
                 const strMime = "image/png";
                 const strDownloadMime = "image/octet-stream";
                 renderer.render(scene, camera)

@@ -1,15 +1,15 @@
 const getShotList = (id, id_is_first, sequenceList, experience, direction, previousAct) => {
     const list = []
-    console.log('********* sequence List ***********', sequenceList)
+   // console.log('********* sequence List ***********', sequenceList)
     for(let i = 0; i < sequenceList.length; i++) {
-      console.log('id', id, 'id_is_first', id_is_first)
-      console.log(sequenceList[i])
+     // console.log('id', id, 'id_is_first', id_is_first)
+     // console.log(sequenceList[i])
       
         const sequenceId = sequenceList[i].sequence_id;
       const sequence = experience.sequences.filter(item => item.sequence_id === sequenceId)[0]
       const sequence_end_state = sequenceList[i].sequence_end_state ? sequenceList[i].sequence_end_state : []
       //const sequence_end_state = sequence.sequence_end_state ? sequence.sequence_end_state : []
-      console.log('********* sequence ***********', sequence)
+     // console.log('********* sequence ***********', sequence)
       for(let j = 0; j < sequence.shots.length; j++) {
         const shot = sequence.shots[j] 
         const is_last_shot = sequence.shots.findIndex(item => item.previous_shot === shot.shot_id)
@@ -32,14 +32,14 @@ const getShotList = (id, id_is_first, sequenceList, experience, direction, previ
           direction: direction,
           previous_ele: previousAct
         }
-        console.log('item', item)
+        //console.log('item', item)
         list.push(item)
       }
     
     
     const list2 = []
     for(let i = 0; i < list.length; i++) {
-      console.log('in list2')
+      //console.log('in list2')
       let previous_shot_key = ""  
       if(!list[i].is_first_shot) {
         previous_shot_key = list[i].id + '.' + list[i].sequence_id + '.' +list[i].previous_shot
@@ -65,7 +65,7 @@ const getShotList = (id, id_is_first, sequenceList, experience, direction, previ
 
     const list3 = []
     for(let i = 0; i < list2.length; i++) {
-      console.log('in list 3')
+     // console.log('in list 3')
       let elapsed_time = 0
       const shot = list2[i]
       function getElapsedTime (shot) {
@@ -86,7 +86,7 @@ const getShotList = (id, id_is_first, sequenceList, experience, direction, previ
     let finalShotKey = -1
     let maxElapsedTime = -1
     for(let i = 0; i < list3.length; i++) {
-      console.log('adding final shot key')
+     // console.log('adding final shot key')
       if(list3[i].elapsed_time > maxElapsedTime) {
         maxElapsedTime = list3[i].elapsed_time
         finalShotKey = list3[i].shot_key
@@ -95,7 +95,7 @@ const getShotList = (id, id_is_first, sequenceList, experience, direction, previ
 
     const list4 = []
     for(let i = 0; i < list3.length; i++) {
-      console.log('in list 4')
+    //  console.log('in list 4')
       const is_final_shot = list3[i].shot_key === finalShotKey ? true : false
       list4.push({is_final_shot: is_final_shot,  ...list3[i]})
     }

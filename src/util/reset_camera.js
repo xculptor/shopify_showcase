@@ -1,5 +1,5 @@
 function resetCamera (experience, currProduct, camera, currViewport, orbitControls) {
-    console.log('currViewport', currViewport, camera.position.x, camera.position.y, camera.position.z)
+    //console.log('currViewport', currViewport, camera.position.x, camera.position.y, camera.position.z)
 
     // RESET CAMERA
     let newCameraPosition = {
@@ -26,7 +26,7 @@ function resetCamera (experience, currProduct, camera, currViewport, orbitContro
       const deltaY = fy * Number(currViewport.camera_adjustment_factor)
       const deltaZ = fz * Number(currViewport.camera_adjustment_factor)
 
-      console.log(newCameraPosition, 'delta', deltaX, deltaY, deltaZ)
+     // console.log(newCameraPosition, 'delta', deltaX, deltaY, deltaZ)
                 camera.position.x = newCameraPosition.x+deltaX;
                 camera.position.y = newCameraPosition.y+deltaY;
                 camera.position.z = newCameraPosition.z+deltaZ;

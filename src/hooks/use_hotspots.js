@@ -11,7 +11,7 @@ const { isLoading, error, sendRequest: callAPI } = useHttp();
 useEffect(()=>{
     
     if (hotspotList && hotspotList.length > 0) {
-      console.log('hotspotList', hotspotList)
+     // console.log('hotspotList', hotspotList)
         async function getHotspots(list) {
             const hotspotPromise = list.map(async (item) => {
               const blob = await fetchModel(
@@ -21,15 +21,16 @@ useEffect(()=>{
               );
               
               const text= item.is_banner ? item.text : ""
+              const font = item.hotspot.font ? item.hotspot.font : "20px Arial" 
               const blob1 = await fetchModel(
-                "/canvas/get_hotspot_banner?text="+text+"&width=250&height=100",
+                "/canvas/get_hotspot_banner?text="+text+"&width=1000&height=400&font="+font,
                 callAPI,
                 "blob"
               )
               const hotspotUrl = window.URL.createObjectURL(blob);
               const hotspotBannerUrl = window.URL.createObjectURL(blob1);
              
-              console.log('Hotspot Item', item)
+            //  console.log('Hotspot Item', item)
               return {
                 hotspot_id: item.hotspot_id,
                 link_id: item.link_id,

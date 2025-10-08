@@ -15,7 +15,7 @@ const useProductMaterialList = (scroll) => {
         const hotspotList = []
         
       if(scroll){  
-        console.log('showcase in productmarketlist', scroll)
+        //console.log('showcase in productmarketlist', scroll)
         for (let i = 0; i < scroll.products.length; i++) {
         const components = []
           for (let j = 0; j < scroll.products[i].product.components.length; j++) {
@@ -49,7 +49,7 @@ const useProductMaterialList = (scroll) => {
                 
           for (let j = 0; j < scroll.products[i].product.property.length; j++) {
             const property = scroll.products[i].product.property[j]
-            console.log('property', property)
+           // console.log('property', property)
           if (property.property_type === "material") {
             for (
               let k = 0;

@@ -18,7 +18,7 @@ useEffect(()=>{
                 callAPI,
                 "blob"
               );
-              console.log('is_draco useProps')
+              //console.log('is_draco useProps')
               const glbFile = await loadModel(blob, false, loadingManager);
              
               return {

@@ -3,6 +3,7 @@ import * as THREE from "three";
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CircularWithValueLabel from "./util/Progress_Bar"
+import LinearWithValueLabel from './util/progress-bar-linear'
 import io from "socket.io-client";
 import useReceivedParams from "./hooks/use_received_params";
 import useShowcase from './hooks/use_showcase'
@@ -60,9 +61,10 @@ import useRulerControl from "./hooks/use_ruler_control";
 
 function App() {
   const URL = process.env.REACT_APP_BACKEND_BASE_URL
-  console.log("************************** EUME **************************")
+ // console.log("************************** EUME **************************")
   
-  const socket = io(URL, { autoConnect: false });
+  //const socket = io(URL, { autoConnect: false });
+  const socket = 'test'
   const [isSocketConnected, setIsSocketConnected] = useState(false);
 const [loadingManager, setLoadingManager] = useState(new THREE.LoadingManager());
 
@@ -125,7 +127,7 @@ const [loadingManager, setLoadingManager] = useState(new THREE.LoadingManager())
     const {isProductAdded, isAddRuler, setIsAddRuler, currProductAdded} = useAddProduct(scene, camera, showcase, orbitControls, allModels, currProduct, allMaterials, isCurrProductLoaded, currViewport, xidList, defaultMaterial)
 //HOTSPOT AND ANNOTATION 
     const allHotspots = useHotspots(hotspotList, loadingManager)
-  const isAnnotationLoaded = useAnnotations(scene, showcase, currActId, allHotspots, modelList, xidList, isProductAdded, hotspotColor);
+  const isAnnotationLoaded = useAnnotations(scene, showcase, currActId, allHotspots, modelList, xidList, isProductAdded, hotspotColor, loadingManager);
 
 
     const { intersectingObjects, rayCast,isRaycast, setIsRayCast, raycastToggle, setRaycastToggle, setIntersectingObjects } = useRaycast(
@@ -145,7 +147,7 @@ const [loadingManager, setLoadingManager] = useState(new THREE.LoadingManager())
 
     //useAddShader(scene, renderer)
     const currControls = useControls(renderer, currProduct, showcase, scene, camera, orbitControls, changeControl, allRulers, isAddRuler, setIsAddRuler)
-   const {isChangeRulerValue,  setIsChangeRulerValue, setIsNewRulerValue } = useAddRulers(isAddRuler, setIsAddRuler, showcase, scene, allRulers, currProduct, modelList,  changeControl, currControls, xidList)
+   const {isChangeRulerValue,  setIsChangeRulerValue, setIsNewRulerValue } = useAddRulers(isAddRuler, setIsAddRuler, showcase, scene, allRulers, currProduct, modelList,  changeControl, currControls, xidList, loadingManager)
     useVariant(newVariant, currProduct, allMaterials, scene, modelList, xidList)
     
     //const { shotList, setIsRunning } = useChangeFrame(frameAnimationList, currFrameIndex, currScrollDirection)
@@ -204,89 +206,89 @@ useBackInteractionList(showcase, currActId, currStates, shotList, setShotList, i
 //useRulerControl(allRulers, scene, currProduct, rulerControl)
 const {loadingPercent, isLoaded} = useLoadingManager(loadingManager)
   
-useEffect(()=>{
-  console.log('allHotspots App', allHotspots)
- }, [allHotspots])
+// useEffect(()=>{
+//   console.log('allHotspots App', allHotspots)
+//  }, [allHotspots])
 
- useEffect(()=>{
-  console.log('CurrActId 1', currActId)
- }, [currActId])
+//  useEffect(()=>{
+//   console.log('CurrActId 1', currActId)
+//  }, [currActId])
 
   
- useEffect(()=>{
-  console.log('xidList', xidList)
- }, [xidList])
+//  useEffect(()=>{
+//   console.log('xidList', xidList)
+//  }, [xidList])
 
-useEffect(()=>{
-  console.log('currStates', currStates)
- }, [currStates])
+// useEffect(()=>{
+//   console.log('currStates', currStates)
+//  }, [currStates])
 
 
-  useEffect(()=>{
-    if(allRulers) {
-     console.log('allRulers', allRulers)
-    }
+//   useEffect(()=>{
+//     if(allRulers) {
+//      console.log('allRulers', allRulers)
+//     }
 
-  }, [allRulers])
+//   }, [allRulers])
   
-  useEffect(()=>{
-    console.log('intersectingObjects', intersectingObjects)
-  }, [intersectingObjects])
+//   useEffect(()=>{
+//     console.log('intersectingObjects', intersectingObjects)
+//   }, [intersectingObjects])
 
-  useEffect(()=>{
-    console.log('allModels', allModels)
-  }, [allModels])
+//   useEffect(()=>{
+//     console.log('allModels', allModels)
+//   }, [allModels])
 
-  useEffect(()=>{
-    console.log('sessionId on canvas', sessionId)
-  }, [sessionId])
+//   useEffect(()=>{
+//     console.log('sessionId on canvas', sessionId)
+//   }, [sessionId])
 
 
-  useEffect(()=>{
-    console.log('showcase in Canvas', showcase)
-  }, [showcase])
+//   useEffect(()=>{
+//     console.log('showcase in Canvas', showcase)
+//   }, [showcase])
 
-  useEffect(()=>{
-    console.log('animationList', animationList)
-  }, [animationList])
+//   useEffect(()=>{
+//     console.log('animationList', animationList)
+//   }, [animationList])
 
-  useEffect(()=>{
-    console.log('xidList', xidList)
-  }, [xidList])
+//   useEffect(()=>{
+//     console.log('xidList', xidList)
+//   }, [xidList])
 
   useEffect(()=>{
     console.log('scene', scene)
   }, [scene])
 
   
-  useEffect(()=>{
-    console.log('shotList', shotList)
-  }, [shotList])
+//   useEffect(()=>{
+//     console.log('shotList', shotList)
+//   }, [shotList])
 
-  useEffect(()=>{
-    console.log('allEnvironments', allEnvironments)
-  }, [allEnvironments])
+//   useEffect(()=>{
+//     console.log('allEnvironments', allEnvironments)
+//   }, [allEnvironments])
 
-  useEffect(()=>{
-    console.log('currEnvironment', currEnvironment)
-  }, [currEnvironment])
+//   useEffect(()=>{
+//     console.log('currEnvironment', currEnvironment)
+//   }, [currEnvironment])
 
-useEffect(()=>{
-    console.log('newEnvironment', newEnvironment)
-  }, [newEnvironment])
+// useEffect(()=>{
+//     console.log('newEnvironment', newEnvironment)
+//   }, [newEnvironment])
 
-useEffect(()=>{
-  console.log('showcase', showcase)
-}, [showcase])
+// useEffect(()=>{
+//   console.log('showcase', showcase)
+// }, [showcase])
 
-useEffect(()=>{
-  console.log('original showcase', originalShowcase)
-}, [originalShowcase])
+// useEffect(()=>{
+//   console.log('original showcase', originalShowcase)
+// }, [originalShowcase])
 
   useEffect(() => {
     if (renderer) {
       container.current.appendChild(renderer.domElement);
-      console.log('canvasHeight', container.current.clientHeight,container.current.clientWidth )
+     // console.log('canvasHeight', container.current.clientHeight,container.current.clientWidth )
       renderer.domElement.addEventListener("touchstart", rayCast);
       renderer.domElement.addEventListener("mousedown", rayCast);
     }
@@ -308,12 +310,12 @@ useEffect(()=>{
   // };
 
   useEffect(() => {
-    if (!isSocketConnected && sessionId) {
-      console.log("sessionId on canvas", sessionId)
-      socket.auth = { sessionId };
-      socket.connect();
-      setIsSocketConnected(true);
-    }
+    // if (!isSocketConnected && sessionId) {
+    //   console.log("sessionId on canvas", sessionId)
+    //   socket.auth = { sessionId };
+    //   socket.connect();
+    //   setIsSocketConnected(true);
+    // }
   }, [sessionId]);
 
   // useEffect(() => {
@@ -330,17 +332,21 @@ useEffect(()=>{
     }
     //setInH(canvasHeight)
     //setInW(canvasWidth)
-    console.log('canvasHeight', canvasHeight, 'canvasWidth', canvasWidth)
+   // console.log('canvasHeight', canvasHeight, 'canvasWidth', canvasWidth)
     camera.updateProjectionMatrix();
     renderer.setSize(canvasWidth, canvasHeight);
     renderer.render(scene, camera);
   };
 
-  
-
+  //<img src = 'eume_background.jpg' style={{objectFit: "cover", width: '100%', opacity: 0.2}}></img>
+//<CircularWithValueLabel value={loadingPercent} />
+//<img src = 'eume_logo.svg' style={{position: "fixed", top: 10, right: 10, height: 50, width: 50 , opacity: !isLoaded && !isProductAdded ? 0 : 1}}></img>
   return (
+<Grid sx={{position: 'fixed', top: 0, left: 0, height: '100%', width: '100%'}}>
+<img src = 'eume_background.jpg' style={{objectFit: "cover", height: '100%', width: '100%', opacity: !isLoaded && !isProductAdded ? 0 : 0.5 }}></img>
+
 <Box>
-{!isLoaded && <div style={{
+{!isLoaded && !isProductAdded && <div style={{
         height: "100%",
         width: "100%",
         //border: "1px solid black",
@@ -350,12 +356,27 @@ useEffect(()=>{
       display: "flex",
       alignItems: "center",
       justifyContent: "center"
-      }}><CircularWithValueLabel value={loadingPercent} /></div>}
+      }}>
+        <Grid container direction='column' sx={{p: 3, justifyContent: 'center', alignItems: 'center', width: 200, boxShadow: 1, backgroundColor: "#eeeeee"}}>
+        <Grid sx={{ my: 1}} >
+        <img src = 'eume_logo.svg' style={{ height: 100, width: 100 }}></img>  
+        </Grid>
+        
+        <Grid sx={{ my: 1, width: '100%'}}>
+        <LinearWithValueLabel value={loadingPercent} />
+        </Grid>
+        
+        
+        </Grid>
+        
+        
+        </div>}
 <div
       ref={refBody}
       style={{
         height: "100%",
         width: "100%",
+        
         //border: "1px solid black",
         position: "absolute",
         left: "50%",
@@ -370,16 +391,17 @@ useEffect(()=>{
                 </Grid>
      }
      {!isBack && <Grid container sx={{m: 1, direction: "row", width: "100%", position: "fixed", p: 1, top: 0, left: 0, alignItems: "center", justifyContent: "center"}} >
-      {currActId && currActId !== "01" && <Button onClick = {exploreInsideHandler} sx={{variant: "contained", backgroundColor: "#eeeeee", color: "#000000", fontSize: 12, fontStyle: "bold", "&:hover": {
+      {currActId && currActId !== "01" && <Button onClick = {exploreInsideHandler} sx={{variant: "outlined", backgroundColor: "#eeeeee", color: "#000000", fontFamily: "Montserrat", fontSize: 12, fontWeight: 'bold',  "&:hover": {
       backgroundColor: '#cccccc'
     }}}>Explore inside</Button>}
-    {currActId && currActId !== "01" && <Button onClick = {checkSizeHandler} sx={{m: 1, px: 2, variant: "contained", backgroundColor: "#eeeeee", color: "#000000", fontSize: 12, fontStyle: "bold", "&:hover": {
+    {currActId && currActId !== "01" && <Button onClick = {checkSizeHandler} sx={{m: 1, px: 2, variant: "contained", backgroundColor: "#eeeeee", color: "#000000", fontFamily: "Montserrat", fontSize: 12, fontWeight: 'bold', "&:hover": {
       backgroundColor: '#cccccc'
     }}}>Check Size</Button>}
      </Grid>
       
      }
     </Box> 
+    </Grid>
   );
 }
 

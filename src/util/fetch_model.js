@@ -1,6 +1,6 @@
 const fetchModel = async (model, callAPI, type) => {
     try {
-      console.log('url', model)
+      //console.log('url', model)
     const data = await callAPI( {url:  model}, type)
     return data;
   } catch (err) {

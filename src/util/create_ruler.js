@@ -6,13 +6,13 @@ import createScale from "./create_scale.js";
 import addDisplayShader from "./add_display_shader.js";
 
 function createRuler(
-  scene, object_xid, isRuler, ruler
+  scene, object_xid, isRuler, ruler, loadingManager
 ) {
   
-  console.log('ruler ruler', ruler, object_xid)
+ //console.log('ruler ruler', ruler, object_xid)
 
 
-const lineColor = ruler.line_color ? ruler.line_color : new THREE.Color('red')
+const lineColor = ruler.line_color ? ruler.line_color : new THREE.Color('#808080')
   const offset = Number(ruler.offset);
   const scale = Number(ruler.scale);
   const is_arrowhead = ruler.is_arrowhead
@@ -78,8 +78,9 @@ const points_array = [
               rulerX.name = "RULER";
               rulerX.userData.xid = ruler.link_id
               rulerX.visible = isRuler
-              addDisplayShader(scene, "x", banner_length/2,  banner_length, positionX, positionY - banner_length/2, positionZ + banner_length/2, banner_object_x, ruler.link_id, isRuler )
-        scene.add(rulerX)
+              //addDisplayShader(scene, "x", banner_length/2,  banner_length, positionX, positionY - banner_length/2, positionZ + banner_length/2, banner_object_x, ruler.link_id, isRuler )
+              addDisplayShader(scene, "x", 0.10, 0.25, positionX, positionY - banner_length/2, positionZ + banner_length/2, banner_object_x, ruler.link_id, isRuler, loadingManager )
+              scene.add(rulerX)
       }
       
       
@@ -103,7 +104,7 @@ const points_array = [
               rulerY.name = "RULER";
               rulerY.userData.xid = ruler.link_id
               rulerY.visible = isRuler
-        addDisplayShader(scene, "y", banner_length/2,  banner_length, positionX - banner_length/2, positionY , positionZ + banner_length/2, banner_object_y, ruler.link_id, isRuler )
+        addDisplayShader(scene, "y",  0.10, 0.25, positionX - banner_length/2, positionY , positionZ + banner_length/2, banner_object_y, ruler.link_id, isRuler )
         scene.add(rulerY)
 
       }
@@ -125,8 +126,8 @@ const points_array = [
               rulerZ.name = "RULER";
               rulerZ.userData.xid = ruler.link_id
               rulerZ.visible = isRuler
-              console.log('RulerRuler', rulerZ)
-              addDisplayShader(scene, "z", banner_length/2,  banner_length, positionX + banner_length/2, positionY - banner_length/2 , positionZ , banner_object_z, ruler.link_id, isRuler )
+             // console.log('RulerRuler', rulerZ)
+              addDisplayShader(scene, "z",  0.10, 0.25, positionX + banner_length/2, positionY - banner_length/2 , positionZ , banner_object_z, ruler.link_id, isRuler )
               
         scene.add(rulerZ)
 

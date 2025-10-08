@@ -19,9 +19,9 @@ const useControls = (renderer, currProduct, experience, scene, camera, orbitCont
 
   useEffect(()=>{
     if(changeControl && experience && experience.controls) {
-      console.log('changeControl', changeControl)
+     // console.log('changeControl', changeControl)
         const control = experience.controls.filter(item => item.control_id.control_id === changeControl.control_id )
-        console.log('control', control)
+       // console.log('control', control)
         const value = changeControl.value
         if(control.length > 0) {
          const item = control[0].control_id   

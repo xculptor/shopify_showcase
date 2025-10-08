@@ -14,8 +14,8 @@ const useModeShowcase = (showcase, sessionId, newActId) => {
     useEffect(()=>{
         if(showcase) {
                 const firstAct = showcase.acts.filter((item) => item.is_launch_act === true)[0];
-                console.log('firstAct', firstAct)
-                console.log('firstActId 2', firstAct.act_id)
+                //console.log('firstAct', firstAct)
+                //console.log('firstActId 2', firstAct.act_id)
                
                 setCurrActId(firstAct.act_id);
                 
@@ -27,7 +27,7 @@ const useModeShowcase = (showcase, sessionId, newActId) => {
     useEffect(()=>{
       if(newActId)
       {
-        console.log('new act Id **********')
+        //console.log('new act Id **********')
         setCurrActId(newActId);
       sendSocketMessage({type: "curr_act_id", message: newActId }, sessionId, callAPI)
       }
@@ -36,7 +36,7 @@ const useModeShowcase = (showcase, sessionId, newActId) => {
 
     function nextAct(nextEle) {
       if (showcase && currActId && nextEle) {
-        console.log('act NEXT ELEMENT **********')
+       // console.log('act NEXT ELEMENT **********')
           setCurrActId(nextEle);
           sendSocketMessage({type: "curr_act_id", message: nextEle }, sessionId, callAPI)
       }

@@ -15,7 +15,7 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
     const [isDefaultProductAdded, setIsDefaultProductAdded] = useState(false)
     
     useEffect(()=>{
-        console.log('defaultMaterial', defaultMaterial)
+       // console.log('defaultMaterial', defaultMaterial)
         if(scene && allModels && allModels.length > 0 && currProduct && isCurrProductLoaded && currViewport && defaultMaterial && defaultMaterial.length > 0 && !isDefaultProductAdded) {
             for(let i = 0; i < currProduct.product.components.length; i++) {
                 const component = currProduct.product.components[i]
@@ -26,16 +26,26 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
             model.name = 'PRODUCT'
              setCurrModelXid(prevList => [...prevList, model.userData.xid])
              setAddedProductList(prevList => [...prevList, model])
+              const customValues = currProduct.custom_values
+              //Custom Values
+                for(let i = 0; i < customValues.length; i++) {
+                    const prop = customValues[i].property
+                    const val = customValues[i].value
+                    const prop1 = prop.split(".")[0]
+                    const prop2 = prop.split(".")[1]
+                    model[prop1][prop2] = Number(val)
+                }
+              scene.add(model)
              //ADD Material
              for(let i = 0; i < currProduct.product.property.length; i++) {
                     const property = currProduct.product.property[i]
                   if(property.property_type==='material') {
                     const variant = property.variants.filter(item => item.is_active && item.is_default)[0]
-                    console.log('variant', variant)
+                   // console.log('variant', variant)
                     const material = defaultMaterial.filter(item => item.property_id === property.property_id)[0].material
+                    
+                   // console.log('Applying material', property)
                    
-                    console.log('Applying material', property)
-                    scene.add(model)
                     for(let i = 0; i < property.link_id.length; i++) {
                        
                         const xids = xidList.filter(item => item.link_id === property.link_id[i])[0].xid
@@ -72,7 +82,7 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
         
         setModelList([])
         if(scene && allModels && allModels.length > 0 && currProduct && isCurrProductLoaded && currViewport && isDefaultProductAdded) {
-           console.log('currProduct', currProduct, xidList)
+          // console.log('currProduct', currProduct, xidList)
         if(currModelXid.length > 0) {
            
             for(let i = 0; i < currModelXid.length; i++) {
@@ -116,10 +126,11 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
                 }
 
                 //
-                console.log('ADDINING MODEL TO SCENEeee', model)
+               // console.log('ADDINING MODEL TO SCENEeee', model)
                 
                  
                 model.castShadow = true
+                
                 scene.add(model)
                 
                 //RESET CAMERA TO GET COMPLETE VIEW OF PRODUCT
@@ -129,7 +140,7 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
                 const center = box.getCenter(new Vector3());
                 //camera.position.z += size / 1.5 ;
                
-                console.log('center', center)
+               // console.log('center', center)
                 //orbitControls.target = center
                 
                 setCurrProductAdded(currProduct)
@@ -157,7 +168,7 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
 
         }
         
-        console.log('Setting IsProductAdded')
+       // console.log('Setting IsProductAdded')
         setIsProductAdded(true)
          }
     
@@ -166,17 +177,17 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
 
     useEffect(()=>{
         if(scene && allMaterials && allMaterials.length > 0 && isAddMat) {
-            console.log('Applying material', allMaterials, 'currProduct', currProduct)
+           // console.log('Applying material', allMaterials, 'currProduct', currProduct)
             
             if(modelList && modelList.length > 0) {
                 for(let i = 0; i < currProduct.product.property.length; i++) {
                     const property = currProduct.product.property[i]
                   if(property.property_type==='material') {
                     const variant = property.variants.filter(item => item.is_active && item.is_default)[0]
-                    console.log('variant', variant)
+                   // console.log('variant', variant)
                     const material = allMaterials.filter(item => item.variant_id === variant.variant_id)[0].material
                    
-                    console.log('Applying material', property)
+                   // console.log('Applying material', property)
             
                     for(let i = 0; i < property.link_id.length; i++) {
                        
@@ -206,7 +217,7 @@ const useAddProduct = (scene, camera, showcase, orbitControls, allModels, currPr
 }
 
 function applyCustomValues (showcase) {
-    console.log(showcase)
+    //console.log(showcase)
 }
 
 

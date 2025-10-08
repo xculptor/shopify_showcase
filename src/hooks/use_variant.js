@@ -3,7 +3,7 @@ import { useEffect } from "react";
 const useVariant = (newVariant, currProduct, allMaterials, scene, modelList, xidList) => {
   useEffect(() => {
     if (newVariant && currProduct && scene) {
-      console.log('newVariant', newVariant)
+    //  console.log('newVariant', newVariant)
 
       
    
@@ -11,7 +11,7 @@ const useVariant = (newVariant, currProduct, allMaterials, scene, modelList, xid
         (item) => item.property_id === newVariant.property_id
       )[0].property_type
       
-      console.log('propertyType', propertyType)
+     // console.log('propertyType', propertyType)
 
     switch(propertyType) {
       case "material":
@@ -47,12 +47,12 @@ const useVariant = (newVariant, currProduct, allMaterials, scene, modelList, xid
         )[0].variants
         .filter(item => item.variant_id === newVariant.variant_id)[0]
         
-        console.log(currProduct)
-        console.log("PART", variant)
+       // console.log(currProduct)
+      //  console.log("PART", variant)
 
         const linkIdAdd = variant.link_id_add;
         const linkIdRemove = variant.link_id_remove;
-        console.log('linkIdAdd', linkIdAdd)
+       // console.log('linkIdAdd', linkIdAdd)
 
         for(let i = 0; i < linkIdAdd.length; i++) { 
           const xid = xidList.filter(item => item.link_id === linkIdAdd[i])[0].xid
@@ -60,7 +60,7 @@ const useVariant = (newVariant, currProduct, allMaterials, scene, modelList, xid
             scene.traverse(function(child){
               if(child.userData && child.userData.xid) {
                 if(child.userData.xid === xid[j]) {
-                  console.log('setting true')
+                //  console.log('setting true')
                   child.visible = true
                 }
               } 
@@ -74,7 +74,7 @@ const useVariant = (newVariant, currProduct, allMaterials, scene, modelList, xid
             scene.traverse(function(child){
               if(child.userData && child.userData.xid) {
                 if(child.userData.xid === xid[j]) {
-                  console.log('setting false')
+                 // console.log('setting false')
                   child.visible = false
                 }
               } 

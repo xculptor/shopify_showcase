@@ -11,11 +11,11 @@ const useRaycast = (scene, camera, renderer, inH, inW, ) => {
     useEffect(()=>{
       setIsRayCast(true)
       setRaycastToggle(!raycastToggle)
-      console.log('***********isRaycast***********', isRaycast, raycastToggle)
+      //console.log('***********isRaycast***********', isRaycast, raycastToggle)
     }, [intersectingObjects])
 
     const rayCast = (e) => {
-      console.log('setting Raycast True')
+     // console.log('setting Raycast True')
         
         
         //1. sets the mouse position with a coordinate system where the center
@@ -34,11 +34,12 @@ const useRaycast = (scene, camera, renderer, inH, inW, ) => {
 
 
         const intersects = raycaster.intersectObjects(scene.children, true);
-    
+        console.log('intersects', intersects)
         const intersectingObjects = [];
         for (var i = 0; i < intersects.length; i++) {
-            if (intersects[i].object.userData) {
+            if (intersects[i].object.userData && intersects[i].object.visible === true) {
                 if(intersectingObjects.filter(item => item.userData.xid === intersects[i].object.userData.xid).length === 0) { 
+                  
                 intersectingObjects.push(intersects[i].object);
               }
             }

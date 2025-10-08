@@ -17,11 +17,11 @@ const useShotObject = (
   const [shotObjectList, setShotObjectList] = useState([]);
 
   useEffect(() => {
-   console.log('SHOTLIST 111', shotList)
+   //console.log('SHOTLIST 111', shotList)
     if (isProductAdded && scroll && scene && camera && orbitControls && shotList && shotList.length > 0 && allModels && allModels.length > 0) {
       const shotObjectList = []
       let centerObject = {};
-      console.log('SHOTLIST', shotList)
+      //console.log('SHOTLIST', shotList)
     
       const shotListPromise = shotList.map(async ( item ) => {
 
@@ -98,11 +98,11 @@ async function actionsHandler (actionList, allModels, centerObject, camera, orbi
         const list = [];
        
         //for (let j = 0; j < action.action_link_id?.length; j++) {
-          console.log('action', action)
+          //console.log('action', action)
           const xid = xidList.filter(item => item.link_id === action.action_link_id[0])[0].xid
           
           const listPromise = xid.map( async (item) => {
-            console.log('type',action.action_object_type, 'item', item)
+            //console.log('type',action.action_object_type, 'item', item)
             const obj = await getObject(
               item,
               scene,
@@ -112,7 +112,7 @@ async function actionsHandler (actionList, allModels, centerObject, camera, orbi
           }) 
           
           Promise.all(listPromise).then((list)=> {
-            console.log('list', list)
+           // console.log('list', list)
             actions.push({
               action: action,
               object_list: list,

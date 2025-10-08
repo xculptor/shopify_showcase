@@ -333,14 +333,14 @@ const useSceneManager = (
 
       //LIGHTS
       if (experience.environment.ambient_light.is_active || experience.environment.ambient_light.is_active === 'true' ) {
-        console.log('ADDING AMBIENT LIGHT')
+        //console.log('ADDING AMBIENT LIGHT')
         const ambientLight = new THREE.AmbientLight(0x404040);
         ambientLight.intensity = 1; //environment.ambient_light.light_intensity
         //ambientLight.color = new THREE.Color( 0x404040)//environment.ambient_light.light_color)
         scene.add(ambientLight);
       }
      
-      console.log()
+      //console.log()
       if (experience.lights && experience.lights.length > 0) {
         for (let i = 0; i < experience.lights.length; i++) {
           if (experience.lights[i].is_active) {

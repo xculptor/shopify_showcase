@@ -13,13 +13,13 @@ useEffect(()=>{
     if(showcaseId) {
       
         async function getShowcase(showcaseId) {
-           console.log( "/showcase/get_showcase_canvas?showcase=" , showcaseId)
+           //console.log( "/showcase/get_showcase_canvas?showcase=" , showcaseId)
             const response = await fetchModel(
               "/showcase/get_showcase_canvas?showcase=" + showcaseId,
               callAPI,
               "json"
             );
-            console.log('response', response)
+          //  console.log('response', response)
             return response;
           }
 

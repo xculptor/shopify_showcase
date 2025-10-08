@@ -6,7 +6,7 @@ const useXid = ( modelList, showcase) => {
     
     useEffect(()=>{
         if(modelList && !isRefresh) {
-            console.log('xid refresh')
+           // console.log('xid refresh')
             setXidList([])
             setIsRefresh(true)
         }

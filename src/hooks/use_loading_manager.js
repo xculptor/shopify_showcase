@@ -12,10 +12,15 @@ function useLoadingManager(loadingManager) {
        
         //console.log('loading', itemsLoaded, itemsTotal)
         //const percent = Math.round(( itemsLoaded / itemsTotal) * 100).toString() + " %";
-        const percent = ( itemsLoaded / itemsTotal) * 100
-        setLoadingPercent(percent);
-        if(percent===100){
-           setIsLoaded(true);
+        const percent = ( itemsLoaded / itemsTotal) * 100 
+        if(loadingPercent < percent) {
+          const value = percent > 100 ? 100 : percent
+          setLoadingPercent(value);
+        }
+        
+        if(percent>=100){
+          setTimeout(() => setIsLoaded(true), 1000);
+           
       }
 	
 

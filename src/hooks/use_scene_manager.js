@@ -370,14 +370,14 @@ const useSceneManager = (
 
       //LIGHTS
       if (currEnvironment.environment.ambient_light.is_active || currEnvironment.environment.ambient_light.is_active === 'true' ) {
-        console.log('ADDING AMBIENT LIGHT')
+       // console.log('ADDING AMBIENT LIGHT')
         const ambientLight = new THREE.AmbientLight(0x404040);
         ambientLight.intensity = 1; //environment.ambient_light.light_intensity
         //ambientLight.color = new THREE.Color( 0x404040)//environment.ambient_light.light_color)
         scene.add(ambientLight);
       }
      
-      console.log()
+      //console.log()
       if (experience.lights && experience.lights.length > 0) {
         for (let i = 0; i < experience.lights.length; i++) {
           if (experience.lights[i].is_active) {
@@ -414,7 +414,7 @@ const useSceneManager = (
                 spotLight.userData.xid = experience.lights[i].link_id  
                 scene.add(spotLight);
                 scene.add(spotLight.target);
-                //const spotLightHelper = new THREE.SpotLightHelper( spotLight );
+                //const spotLightHelper = new THREE.SpotLightHelper( spotLight, "#FF0000" );
                 //scene.add( spotLightHelper );
               break;
               case "directionalLight":
@@ -582,7 +582,7 @@ const useSceneManager = (
   function runTween(currStep, nextStep, duration, easing) {
     const tween0 = new TWEEN.Tween(currStep).to(nextStep, duration);
     tween0.autoStartOnUpdate = true
-    console.log('easing', easing)
+   // console.log('easing', easing)
     tween0.easing(TWEEN.Easing[easing]);
     //tween0.dynamic(true)
     return tween0;

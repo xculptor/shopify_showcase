@@ -11,7 +11,7 @@ const usePlayerInteractionList = (
 
   useEffect(() => {
     if (showcase && runInteractionId) {
-      console.log('runInteractionId', runInteractionId)
+      //console.log('runInteractionId', runInteractionId)
       const currActDetails = showcase.acts.filter(
         (item) => item.act_id === currActId
       )[0];
@@ -55,7 +55,7 @@ const usePlayerInteractionList = (
   }, [runInteractionId]);
 
   useEffect(()=>{
-    console.log('playerInteractionList', playerInteractionList)
+   // console.log('playerInteractionList', playerInteractionList)
   }, [playerInteractionList])
 
   return { id, isFirstId, playerInteractionList}

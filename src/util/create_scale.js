@@ -6,7 +6,7 @@ async function createScale ( axis, scaleLen, scale, scene, scaleItem, arroheadIt
     //const is_arrowhead = true
     const eleLen = 0.1
     const eleCount = Math.floor(scaleLen * scale / eleLen)
-    console.log('axis', axis, 'scaleLen', scaleLen, 'scale', scale, 'eleLen', eleLen, 'eleCount', eleCount)
+   // console.log('axis', axis, 'scaleLen', scaleLen, 'scale', scale, 'eleLen', eleLen, 'eleCount', eleCount)
     const firstElePos = eleLen * eleCount / 2
     const isEven = eleCount % 2 == 0 ? true : false
     const bannerGap =  []
@@ -18,7 +18,7 @@ async function createScale ( axis, scaleLen, scale, scene, scaleItem, arroheadIt
         bannerGap.push(bannerGap[0]+1)
         bannerGap.push(bannerGap[0]+2)
     }
-    console.log('bannerGap', bannerGap)
+  //  console.log('bannerGap', bannerGap)
     const scaleArray = new THREE.Group()
     //scaleArray.userData.xid = xid
     if(is_banner) {

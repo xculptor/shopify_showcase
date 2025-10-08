@@ -2,7 +2,7 @@ function useScrollEvent ( setNewScrollTimeStamp) {
        
     function scrollEvent (e) {
             setNewScrollTimeStamp(e.timeStamp)     
-            console.log('e.timeStamp', e.timeStamp)
+           // console.log('e.timeStamp', e.timeStamp)
     } 
     return {scrollEvent}
 }

@@ -21,11 +21,11 @@ const useClickInteractionList = (
   useEffect(() => {
     const clickInteractionList = [];
     if (showcase && intersectingObjects && currActId) {
-      console.log('HHHHH')
+      //console.log('HHHHH')
       const currActDetails = showcase.acts.filter(
         (item) => item.act_id === currActId
       )[0];
-console.log('HHHHH 1', currActDetails)
+//console.log('HHHHH 1', currActDetails)
       
       const allClickInteractions = showcase.interactions.filter(
         (item) => item.trigger.trigger_event === "CLICK"
@@ -43,7 +43,7 @@ console.log('HHHHH 1', currActDetails)
         }
 
        
-        console.log('allClickInteractions', allClickInteractions)
+       // console.log('allClickInteractions', allClickInteractions)
         for (let j = 0; j < allClickInteractions.length; j++) {
           
           let isTrigger = false;
@@ -58,7 +58,7 @@ console.log('HHHHH 1', currActDetails)
                 isTrigger = true;
                 sendSocketMessage({type: "interaction_id",  message: allClickInteractions[j].interaction_id }, sessionId, callAPI)
               } else {
-                console.log('NONE...........', allClickInteractions[j])
+               // console.log('NONE...........', allClickInteractions[j])
                 if(allClickInteractions[j].sequences[0].is_next_act === true) {
                   //setNewActId(allClickInteractions[j].sequences[0].next_act)
                   nextAct(allClickInteractions[j].sequences[0].next_act)
@@ -94,7 +94,7 @@ console.log('HHHHH 1', currActDetails)
                 sequences.push(sequence);
               }
             }
-           console.log('sequences', sequences)
+          // console.log('sequences', sequences)
             const list = getShotList(
               currActId,
               currActDetails.is_launch_act,
@@ -103,7 +103,7 @@ console.log('HHHHH 1', currActDetails)
               "NEXT",
               ""
             );
-          console.log('list', list)
+          //console.log('list', list)
           if(list && list.length > 0) {
             clickInteractionList.push(...list);
           }
@@ -112,7 +112,7 @@ console.log('HHHHH 1', currActDetails)
         }
       }
       setIntersectingObjects()
-      console.log('clickInteractionList', clickInteractionList)
+     // console.log('clickInteractionList', clickInteractionList)
       if(clickInteractionList.length > 0) {
         setClickInteractionList(clickInteractionList);
       setShotList(clickInteractionList)

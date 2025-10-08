@@ -2,7 +2,7 @@ import fetchModel from "./fetch_model";
 
 
 const getDimensionDisplay = async (item, display, callAPI) => {
-  console.log('display', display)
+ // console.log('display', display)
     const blob1 = await fetchModel(
         "/canvas/get_dimension_display?axis="+item.axis+
           "&is_ruler="+item.is_ruler+

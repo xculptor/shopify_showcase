@@ -42,13 +42,13 @@ var vertexShader = [
   ].join('\n');
 
 
-const addDisplayShader = (scene, key, planeLength, planeWidth, positionX, positionY, positionZ, url, xid, isVisible) => {
+const addDisplayShader = (scene, key, planeLength, planeWidth, positionX, positionY, positionZ, url, xid, isVisible, loadingManager) => {
 
     const rulerGeo = new THREE.PlaneGeometry( planeWidth, planeLength );
     const uniforms = {
         u_width: {type: 'f', value: planeWidth},
         u_length: {type: 'f', value: planeLength},
-        image: {type: 't', value: new THREE.TextureLoader().load(url)} 
+        image: {type: 't', value: new THREE.TextureLoader(loadingManager).load(url)} 
       }
       var shaderMaterial = new THREE.ShaderMaterial({
         vertexShader: vertexShader,

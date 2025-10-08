@@ -17,7 +17,8 @@ const useAnnotations = (
   modelList,
   xidList,
   isProductAdded,
-  hotspotColor
+  hotspotColor,
+  loadingManager
 ) => {
   const { isLoading, error, sendRequest: callAPI } = useHttp();
   const [isAnnotationLoaded, setIsAnnotationLoaded] = useState(false);
@@ -35,14 +36,14 @@ const useAnnotations = (
         }
       })
         }
-        console.log('currActId', currActId)
+     //   console.log('currActId', currActId)
         const currActDetails = showcase.acts.filter(
           (item) => item.act_id === currActId
         )[0];
-        console.log('currActDetails', currActDetails)
+        //console.log('currActDetails', currActDetails)
         const hotspots = currActDetails.hotspots ? currActDetails.hotspots : [];
-        console.log("allHotspots", allHotspots);
-        console.log("hotspots", hotspots);
+       // console.log("allHotspots", allHotspots);
+        //console.log("hotspots", hotspots);
         
   
         const hotspotPromise = hotspots.map(async (item) => {
@@ -50,7 +51,7 @@ const useAnnotations = (
             (i) => i.hotspot_id === item.hotspot_id
           )[0];
 
-          console.log('hotspotFile', hotspotFile)
+         // console.log('hotspotFile', hotspotFile)
           const spriteFile = hotspotFile.hotspot_url;
   
           const tileHz = Number(hotspotFile.tile_hz);
@@ -85,12 +86,12 @@ const useAnnotations = (
             annotationAlreadyAdded = true
           }
 
-          const sprite = await addSprite(scene, sprite01, linkId, scale, xid, placement, hotspotBannerUrl, annotationAlreadyAdded, setAddedAnnotationList);
+          const sprite = await addSprite(scene, sprite01, linkId, scale, xid, placement, hotspotBannerUrl, annotationAlreadyAdded, setAddedAnnotationList, loadingManager);
           return sprite
         });
   
         Promise.all(hotspotPromise).then((sprite) => {
-          console.log('SPRITE', sprite)
+         // console.log('SPRITE', sprite)
           setIsAnnotationLoaded(true);
         });
   
@@ -164,8 +165,8 @@ async function loadSprite(
   return sprite01;
 }
 
-async function addSprite(scene, sprite01, linkId, scale, xid, placement, hotspotBannerUrl, annotationAlreadyAdded, setAddedAnnotationList) {
-  console.log("finding object to add hotspot", xid[0], sprite01);
+async function addSprite(scene, sprite01, linkId, scale, xid, placement, hotspotBannerUrl, annotationAlreadyAdded, setAddedAnnotationList, loadingManager) {
+ // console.log("finding object to add hotspot", xid[0], sprite01);
 if(annotationAlreadyAdded) {
       scene.traverse(function (child) {
         if(child.userData && child.userData.xid && child.userData.xid === linkId) {
@@ -202,7 +203,7 @@ if(annotationAlreadyAdded) {
       
       sprite01.scale.set(Number(scale), Number(scale), 1);
       //sprite01.scale.set(1, 1, 1);
-      console.log('Adding hotspot Banner', hotspotBannerUrl)
+     // console.log('Adding hotspot Banner', hotspotBannerUrl)
       
       //Banner Position
       const direction = Number(placement.u) > 0.5 ? "RIGHT" : "LEFT"
@@ -231,14 +232,14 @@ if(annotationAlreadyAdded) {
 
       //Add Banner
       
-     addDisplayShader(hotspot, "01", 0.10, 0.25, bannerX, bannerY, bannerZ, hotspotBannerUrl, xid, true)
+     addDisplayShader(hotspot, "01", 0.10, 0.25, bannerX, bannerY, bannerZ, hotspotBannerUrl, xid, true, loadingManager)
      
       
 
      //createSpriteBanner(sprite01, hotspotBannerUrl)
       sprite01.userData.xid = linkId;
       setAddedAnnotationList(prevList => [...prevList, linkId])
-      console.log("adding Hotspot", sprite01);
+      //console.log("adding Hotspot", sprite01);
       hotspot.add(sprite01);
       scene.add(hotspot)
       }

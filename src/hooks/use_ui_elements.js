@@ -29,12 +29,12 @@ function useUIElements (ui) {
         if(ui) {
             setTop(ui.top ? ui.top : 10)
             setLeft(ui.left ? ui.left : 10)
-            setIsBackground(ui.is_background ? ui.isBackground : true)
+            setIsBackground(ui.is_background ? ui.is_background : true)
             setBackground(ui.background ? ui.background : "linear-gradient(white, #D3D3D3)")
             setOpacity(ui.opacity ? ui.opacity : 1)
             setIsBorder( ui.is_border ? ui.is_border : true)
             setBorder( ui.border ? ui.border : 1)
-            setBorderColor( ui.borderColor ? ui.borderColor : "linear-gradient(to right, #D3D3D3,#878787)")
+            setBorderColor( ui.border_color ? ui.border_color : "linear-gradient(to right, #D3D3D3,#878787)")
             setIsBoxShadow(ui.is_boxShadow ? ui.is_boxShadow : true)
             setBoxShadow( ui.boxShadow ? ui.boxShadow : "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)")
 

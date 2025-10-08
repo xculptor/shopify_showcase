@@ -12,7 +12,7 @@ const useModel = (modelList, currProduct, setIsCurrProductLoaded, sessionId, use
         
         if(modelList && modelList.length > 0 && currProduct && userId && projectId) {
          
-          console.log('modelList',  modelList)
+          //console.log('modelList',  modelList)
           const currModelList = []
           for(let i = 0; i < currProduct.product.components.length; i++){
             const component_id = currProduct.product.components[i].component_id
@@ -31,15 +31,15 @@ const useModel = (modelList, currProduct, setIsCurrProductLoaded, sessionId, use
 
           async function getModels(list) {
             const modelPromise = list.map(async (item) => {
-              console.log("path: ", "/canvas/get_model?path=" + userId +'/' + projectId+ "/" + item.model_path)
+              //console.log("path: ", "/canvas/get_model?path=" + userId +'/' + projectId+ "/" + item.model_path)
               const blob = await fetchModel(
                 "/canvas/get_model?path=" + userId +'/' + projectId+ "/" + item.model_path,
                 callAPI,
                 "blob"
               );
-              console.log('is_draco model')
+              //console.log('is_draco model')
               const glbFile = await loadModel(blob, item.is_draco, loadingManager);
-              console.log('glbFile', glbFile)
+              //console.log('glbFile', glbFile)
               //glbFile.scene.children[0].position.x = 0;
               //glbFile.scene.children[0].position.y = 0;
               //glbFile.scene.children[0].position.z = 0;

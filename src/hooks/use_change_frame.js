@@ -17,7 +17,7 @@ function useChangeFrame(
     //setShotList([]);
     if (currFrameIndex > -1) {
       const qShotList = []
-      console.log("zzzz shotList frame", prevFrameIndex, "->", currFrameIndex, "currScrollDirection", currScrollDirection);
+      //console.log("zzzz shotList frame", prevFrameIndex, "->", currFrameIndex, "currScrollDirection", currScrollDirection);
 
       if(currScrollDirection === "down") {
         for(let i = prevFrameIndex+1 ? prevFrameIndex+1 : currFrameIndex; i < currFrameIndex + 1; i++) {
@@ -30,7 +30,7 @@ function useChangeFrame(
               if(qShotListItem) {
                 qShotList.push(qShotListItem)
               }
-              console.log( 'zzzz qShotList', qShotList)
+              //console.log( 'zzzz qShotList', qShotList)
                     }
       } else if(currScrollDirection === "up") {
         for(let i = prevFrameIndex-1 ? prevFrameIndex-1 : currFrameIndex; i > currFrameIndex - 1; i--) {
@@ -43,7 +43,7 @@ function useChangeFrame(
               if(qShotListItem) {
                 qShotList.push(qShotListItem)
               }
-              console.log( 'zzzz qShotList', qShotList)
+             // console.log( 'zzzz qShotList', qShotList)
                     }
       }
       
@@ -51,7 +51,7 @@ function useChangeFrame(
       setPrevFrameIndex(() => currFrameIndex);
       setPrevScrollDirection(currScrollDirection);
       if (qShotList && qShotList.length > 0) {
-        console.log('zzzz ADDING')
+      //  console.log('zzzz ADDING')
         setQShotList(prevList => [...prevList, ...qShotList]);
       }
     }
@@ -59,7 +59,7 @@ function useChangeFrame(
 
 useEffect(()=>{
     if(!isRunning && qShotList && qShotList.length > 0) {
-        console.log('zzzz adding qShotList', qShotList)
+      //  console.log('zzzz adding qShotList', qShotList)
         setShotList([...qShotList])
         setQShotList([])
         setIsRunning(true)

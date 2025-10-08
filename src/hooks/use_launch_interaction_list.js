@@ -12,9 +12,9 @@ const useLaunchInteractionList = (showcase, currActId, shotList, setShotList, in
   const [isFirstId, setIsFirstId] = useState();
   useEffect(() => {
     if (showcase && currActId ) {
-      console.log('currActId', currActId)
+     // console.log('currActId', currActId)
       const interactionList = showcase.acts.filter(item => item.act_id === currActId)[0].interactions.filter(item => item.is_active === true)
-      console.log('interactionList', interactionList)
+     // console.log('interactionList', interactionList)
       const launchInteractionList = [];
       
       const currLaunchINteractions = []
@@ -29,7 +29,7 @@ const useLaunchInteractionList = (showcase, currActId, shotList, setShotList, in
       const allLaunchInteractions = currLaunchINteractions.filter(
         (item) => item.trigger.trigger_event === "LAUNCH"
       );
-      console.log('allLaunchInteractions', allLaunchInteractions)
+   //   console.log('allLaunchInteractions', allLaunchInteractions)
       //setId(currItemId)
       setIsFirstId(true)
       //setInteractionId(currItemId)
@@ -38,7 +38,7 @@ const useLaunchInteractionList = (showcase, currActId, shotList, setShotList, in
       for(let i = 0; i< allLaunchInteractions.length; i++) {
         sendSocketMessage({type: "interaction_id",  message: allLaunchInteractions[i].interaction_id }, sessionId, callAPI)
         const list = getShotList('01', true, allLaunchInteractions[i].sequences, showcase, "NEXT", "")
-        console.log('LIST', list)
+      //  console.log('LIST', list)
         
         launchInteractionList.push(...list)
       }

@@ -10,7 +10,7 @@ function sortArray(array, property, direction) {
         }
         return comparison;
     });
-    console.log('array', array)
+    //console.log('array', array)
     return array; // Chainable
 }
 

@@ -15,7 +15,7 @@ async function loadModel(blob, is_draco, loadingManager) {
       loader.setDRACOLoader(dloader)
     }
       
-    console.log('is_draco', is_draco, blob)
+    //console.log('is_draco', is_draco, blob)
     const blobURL = URL.createObjectURL(blob);
 
     function modelLoader(blobURL) {

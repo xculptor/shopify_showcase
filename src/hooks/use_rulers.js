@@ -13,7 +13,7 @@ const useRulers = (scroll, xidList, loadingManager) => {
 
   useEffect(() => {
     if (xidList && xidList.length > 0 && scroll && scroll.rulers && scroll.rulers.length > 0) {
-      console.log('ruler', scroll.rulers)
+     // console.log('ruler', scroll.rulers)
       const rulerPromise = scroll.rulers.map(async (item) => {  
         
           const scale = await getGlb("/canvas/get_ruler_scale?path="+item.ruler.scale_file_path, callAPI, loadingManager)
@@ -21,15 +21,15 @@ const useRulers = (scroll, xidList, loadingManager) => {
           const arrowhead = await getGlb("/canvas/get_ruler_arrowhead?path="+item.ruler.arrowhead_file_path, callAPI, loadingManager)
           scale.scene.name = 'scale'
           arrowhead.scene.name = 'arrowhead'
-          console.log('xidList', xidList)
+        //  console.log('xidList', xidList)
           const product_key = xidList.filter(i => i.link_id === item.object_link_id )[0].product_key
           const size = scroll.products.filter(item => item.product_key === product_key)[0].product.size.filter(i => i.link_id === item.object_link_id  )[0] 
           const bannerX = await getRulerBanner(item.ruler.banner_file_path, size.x, callAPI)
           const bannerY = await getRulerBanner(item.ruler.banner_file_path, size.y, callAPI)
           const bannerZ = await getRulerBanner(item.ruler.banner_file_path, size.z, callAPI)
-          console.log('size', size)
-          console.log('scale',scale)
-          console.log('arrowhead', arrowhead)        
+      //    console.log('size', size)
+      //    console.log('scale',scale)
+      //    console.log('arrowhead', arrowhead)        
           return {
                   ruler_id: item.ruler.ruler_id,
                   ruler_key: item.ruler_key,
@@ -53,7 +53,7 @@ const useRulers = (scroll, xidList, loadingManager) => {
       })
       Promise.all(rulerPromise).then( (d) => {
         setAllReulers(prevItem => [...prevItem, ...d])
-        console.log('rulerPromise', d)
+      //  console.log('rulerPromise', d)
       }
 
       )

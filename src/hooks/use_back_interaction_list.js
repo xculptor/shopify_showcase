@@ -13,11 +13,11 @@ const useBackInteractionList = (showcase, currActId, currStates, shotList, setSh
   useEffect(() => {
     if (showcase && currActId && isRunBack ) {
 
-      console.log('currActId', currActId)
+      //console.log('currActId', currActId)
       
      
       const interactionList = showcase.acts.filter(item => item.act_id === currActId)[0].interactions.filter(item => item.is_active === true)
-      console.log('interactionList', interactionList)
+     // console.log('interactionList', interactionList)
       const previousAct = showcase.acts.filter(item => item.act_id === currActId)[0].previous_act
       const launchInteractionList = [];
       
@@ -33,7 +33,7 @@ const useBackInteractionList = (showcase, currActId, currStates, shotList, setSh
       const allLaunchInteractions = currLaunchINteractions.filter(
         (item) => item.trigger.trigger_event === "LAUNCH"
       );
-      console.log('allLaunchInteractions', allLaunchInteractions)
+      //console.log('allLaunchInteractions', allLaunchInteractions)
       //setId(currItemId)
       setIsFirstId(true)
       //setInteractionId(currItemId)
@@ -69,7 +69,7 @@ const useBackInteractionList = (showcase, currActId, currStates, shotList, setSh
             }
         
         const list = getShotList('01', true, sequences, showcase, "PREVIOUS", previousAct)
-        console.log('LIST', list)
+       // console.log('LIST', list)
         
         launchInteractionList.push(...list)
       }

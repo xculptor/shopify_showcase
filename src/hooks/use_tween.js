@@ -26,11 +26,11 @@ const useTween = (
       
      // for (let i = 0; i < interactionObjectList.length; i++) {
      //   const linkedInteraction = interactionObjectList[i];
-        console.log('shotObjectList', shotObjectList)
+        //console.log('shotObjectList', shotObjectList)
         const linkedTweenList = [];
         const currFromValues = [];
         for (let j = 0; j < shotObjectList.length; j++) {
-          console.log('INSIDE FOR LOOP 01')
+         // console.log('INSIDE FOR LOOP 01')
           const shotObject = shotObjectList[j];
           const isFinalShot = shotObject.is_final_shot
           const nextEle = shotObject.next_ele
@@ -40,13 +40,13 @@ const useTween = (
           
           const easingFunction = shotObject.shot_controls.easing_function ? shotObject.shot_controls.easing_function : "Linear"
           const easingType = shotObject.shot_controls.easing_type ? shotObject.shot_controls.easing_type : "None"
-          console.log("EASING", easingFunction, easingType)
+         // console.log("EASING", easingFunction, easingType)
           let duration = shotObject.shot_controls.duration ? Number(shotObject.shot_controls.duration) : 3000
 
           const tweenData = [];
-          console.log('INSIDE FOR LOOP 01A', shotObject)
+         // console.log('INSIDE FOR LOOP 01A', shotObject)
           for (let k = 0; k < shotObject.actions.length; k++) {
-            console.log('INSIDE FOR LOOP 02')
+          //  console.log('INSIDE FOR LOOP 02')
             const action = shotObject.actions[k];
             
             //Check Current State start
@@ -77,11 +77,11 @@ const useTween = (
             }
             //Check Current State Ends
           
-            console.log('isStop', isStop, 'currStates', currStates)
+           // console.log('isStop', isStop, 'currStates', currStates)
 
             if (!isStop) {
                 for (let l = 0; l < action.object_list.length; l++) {
-                  console.log('INSIDE FOR LOOP 03')
+           //       console.log('INSIDE FOR LOOP 03')
                   const obj = action.object_list[l];
                   const clipSpeedFactor = action.action.clip_speed_factor ? Number(action.action.clip_speed_factor): 1
                   let xid = null
@@ -92,9 +92,9 @@ const useTween = (
                   }
                   const action_type = action.action.action_type
                   const action_property = action.action.action_property;
-                  console.log('ACTION TYPE', action_type)
+           //       console.log('ACTION TYPE', action_type)
                   if(action_type === "Clip") {
-                    console.log('found clip')
+           //         console.log('found clip')
                     const act = runAnimation(obj);
                     clipSpeed(clipSpeedFactor)
                     duration = act.getClip().duration * 1000 / clipSpeedFactor
@@ -112,7 +112,7 @@ const useTween = (
                     });
                     setRunningClips(prevVal => [...prevVal, act])
                   } else if (action_type === "Move" || action_type === "Rotate") {
-                    console.log('found -> ', action_type)
+               //     console.log('found -> ', action_type)
                     let fromValues = null;
                     let toValues = null;
 
@@ -208,21 +208,21 @@ const useTween = (
                         z: Number(action.action.action_values.z)
                       }
 
-                      if(obj.isCamera) {
-                        const fx = action.action.action_values.x - orbitControls.target.x
-                        const fy = action.action.action_values.y - orbitControls.target.y
-                        const fz = action.action.action_values.z - orbitControls.target.z
+                      // if(obj.isCamera) {
+                      //   const fx = action.action.action_values.x - orbitControls.target.x
+                      //   const fy = action.action.action_values.y - orbitControls.target.y
+                      //   const fz = action.action.action_values.z - orbitControls.target.z
                   
-                        const deltaX = fx * Number(currViewport.camera_adjustment_factor)
-                        const deltaY = fy * Number(currViewport.camera_adjustment_factor)
-                        const deltaZ = fz * Number(currViewport.camera_adjustment_factor)
+                      //   const deltaX = fx * Number(currViewport.camera_adjustment_factor)
+                      //   const deltaY = fy * Number(currViewport.camera_adjustment_factor)
+                      //   const deltaZ = fz * Number(currViewport.camera_adjustment_factor)
 
-                        toValues = {
-                          x : Number(action.action.action_values.x) + deltaX,
-                          y : Number(action.action.action_values.y) + deltaY,
-                          z : Number(action.action.action_values.z) + deltaZ,
-                        }
-                      }
+                      //   toValues = {
+                      //     x : Number(action.action.action_values.x), //+ deltaX,
+                      //     y : Number(action.action.action_values.y), //+ deltaY,
+                      //     z : Number(action.action.action_values.z), //+ deltaZ,
+                      //   }
+                      // }
                   
                       currFromValues.push({
                         xid: xid, //obj.userData && obj.userData.xid ? obj.userData.xid: "",
@@ -434,7 +434,7 @@ const useTween = (
           for (let i = 0; i < toList.length; i++) {
             toValue = { ...toValue, ...toList[i] };
           }
-          console.log('tweenData', tweenData)
+        //  console.log('tweenData', tweenData)
           const onTweenUpdate = (e) => {
             for (let i = 0; i < tweenData.length; i++) {
               switch (tweenData[i].action.action_type) {
@@ -467,10 +467,10 @@ const useTween = (
                   break;
                 case "intensity":
                 //case "visible":
-                  console.log('e', e)
-                  console.log('tweenData[i]', tweenData[i])
-                  console.log("e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property]", tweenData[i].action_id, tweenData[i].id, tweenData[i].property)
-                  console.log("e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property]", e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property])
+                //  console.log('e', e)
+                 // console.log('tweenData[i]', tweenData[i])
+                 // console.log("e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property]", tweenData[i].action_id, tweenData[i].id, tweenData[i].property)
+                 // console.log("e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property]", e[tweenData[i].action_id][tweenData[i].id][tweenData[i].property])
 
                   tweenData[i].object[tweenData[i].property] =
                     e[tweenData[i].action_id][tweenData[i].id][
@@ -502,15 +502,15 @@ const useTween = (
 
           const onTweenStart = (e) => {
             //if(shotObject.previous_shot_key !== "") {
-              orbitControls.enabled = false;
+             orbitControls.enabled = false;
               setIsTweenRunning(true)
             //}
             for (let i = 0; i < tweenData.length; i++) {
-              console.log('tweenData[i].property', tweenData[i].property)
-              console.log('tweenData[i]', tweenData[i])
+             // console.log('tweenData[i].property', tweenData[i].property)
+            //  console.log('tweenData[i]', tweenData[i])
               switch (tweenData[i].property) {
               case "clip": 
-              console.log('found clip',tweenData[i] )
+            //  console.log('found clip',tweenData[i] )
                 const act = runAnimation(tweenData[i].object);
                 const action = tweenData[i].action
                     if (!action.action_clip_in_reverse) {
@@ -548,7 +548,7 @@ const useTween = (
                 tweenData[i].object.autoRotate = true
                 break;
               case "visible":
-                console.log('hide',  tweenData[i].obj)
+              //  console.log('hide',  tweenData[i].obj)
                   tweenData[i].obj.visible = tweenData[i].action.action_value
                   break;
               }
@@ -556,7 +556,7 @@ const useTween = (
           }
 
           const onTweenComplete = () => {
-            orbitControls.enabled = true;
+           orbitControls.enabled = true;
             for (let i = 0; i < tweenData.length; i++) {
               switch (tweenData[i].property) {
                 case "autoRotate":
@@ -569,7 +569,7 @@ const useTween = (
                 nextAct(nextEle)
               } 
               if(direction === "PREVIOUS") {
-                console.log('******found previous act ********', prevEle)
+              //  console.log('******found previous act ********', prevEle)
                 nextAct(prevEle)
               }
               
@@ -578,7 +578,7 @@ const useTween = (
         
         const easing = easingFunction+"."+easingType
         
-        console.log("EASING JOINED", easing)
+      //  console.log("EASING JOINED", easing)
           const t0 = runTween(fromValue, toValue, duration, easing);
           t0.onStart((e)=> onTweenStart(e))
           t0.onUpdate((e) => onTweenUpdate(e));
@@ -608,7 +608,7 @@ const useTween = (
 
         const chainTween = [];
         const endList = [];
-        console.log('linkedTweenList', linkedTweenList)
+       // console.log('linkedTweenList', linkedTweenList)
         tw();
 
         function tw() {
@@ -683,7 +683,7 @@ const useTween = (
         )[0].tween;
         
        //setRunningTweens(prevItem => [...prevItem, firstTween])
-       console.log('running..........', firstTween)
+      // console.log('running..........', firstTween)
         firstTween.start()
    //   }
     }

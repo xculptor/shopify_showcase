@@ -35,14 +35,14 @@ const usePlayerControls = (
    
 
    useEffect(()=>{
-    console.log("canvasPlayPause", playPause)
+   // console.log("canvasPlayPause", playPause)
             
     switch (playPause) {
         case true:
             const x = cameraSnapshot && cameraSnapshot.x ? cameraSnapshot.x : camera.position.x 
             const y = cameraSnapshot && cameraSnapshot.y ? cameraSnapshot.y : camera.position.y
             const z = cameraSnapshot && cameraSnapshot.z ? cameraSnapshot.z : camera.position.z    
-            console.log('cameraSnapshot', cameraSnapshot)
+           // console.log('cameraSnapshot', cameraSnapshot)
             camera.position.set(x, y, z ) 
             
                 for(let i = 0; i < runningTweens.length; i++) {
